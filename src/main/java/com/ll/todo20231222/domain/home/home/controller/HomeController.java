@@ -13,6 +13,6 @@ public class HomeController {
     @GetMapping("/")
     @ResponseBody
     public List<String> getNames() {
-        return List.of("Tom!!", "Paul@@", "John##");
+        return List.of("ABC", "BBC", "DEF");
     }
 }
