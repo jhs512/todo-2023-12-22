@@ -2,7 +2,9 @@
 	let names = $state([]);
 
 	$effect(() => {
-		fetch(`${import.meta.env.VITE_CORE_API_BASE_URL}`)
+		fetch(`${import.meta.env.VITE_CORE_API_BASE_URL}/api/v1/home/names`, {
+			credentials: 'include'
+		})
 			.then((res) => res.json())
 			.then((data) => {
 				names = data;
