@@ -6,8 +6,11 @@ spring:
     include: secret
   servlet:
     multipart:
-      max-file-size: 50MB # ?? ??? ?? ??
+      max-file-size: 50MB
       max-request-size: ${spring.servlet.multipart.max-file-size}
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
   threads:
     virtual:
       enabled: true
@@ -52,3 +55,7 @@ custom:
   site:
     name: TODO
     baseUrl: "http://localhost:${server.port}"
+  jwt:
+    secretKey: ON_SECRET
+  accessToken:
+    expirationSec: '#{60*60}'
