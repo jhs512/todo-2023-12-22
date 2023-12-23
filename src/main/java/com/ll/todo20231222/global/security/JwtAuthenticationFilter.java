@@ -27,6 +27,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
+        System.out.println("request.getRequestURI() : " + request.getRequestURI());
+
         if (List.of("/api/v1/members/login", "/api/v1/members/join").contains(request.getRequestURI())) {
             filterChain.doFilter(request, response);
             return;

@@ -20,8 +20,10 @@ public class ApiSecurityConfig {
                 .securityMatcher("/api/**")
                 .authorizeRequests(
                         authorizeRequests -> authorizeRequests
-                                .requestMatchers("/api/*/members/login", "/api/*/members/logout").permitAll()
-                                .anyRequest().authenticated()
+                                .requestMatchers("/api/v1/members/login", "/api/v1/members/logout")
+                                .permitAll()
+                                .anyRequest()
+                                .authenticated()
                 )
                 .csrf(
                         csrf -> csrf

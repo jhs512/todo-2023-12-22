@@ -16,10 +16,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests(authorizeRequests ->
-                        authorizeRequests
-                                .anyRequest()
-                                .permitAll()
+                .authorizeRequests(
+                        authorizeRequests ->
+                                authorizeRequests
+                                        .anyRequest()
+                                        .permitAll()
                 )
                 .headers(
                         headers ->
