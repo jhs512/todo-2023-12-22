@@ -12,7 +12,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addMapping("/api/**")
                 .allowedOrigins(
                         "https://cdpn.io",
-                        "http://localhost:5173"
+                        "http://localhost:5173",
+                        "https://todo-2023-12-22.fly.dev"
                 )
                 .allowedMethods("*")
                 .allowedHeaders("*")
