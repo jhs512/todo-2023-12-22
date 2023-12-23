@@ -3,7 +3,7 @@ on:
   push:
     paths:
       - build.gradle
-      - src
+      - src/**
       - fly.toml
       - Dockerfile
       - .github/workflows/deploy.yml
