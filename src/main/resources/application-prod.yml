@@ -1,19 +1,2 @@
 server:
-  port: 443
-spring:
-  datasource:
-    url: NEED_TO_INPUT
-    username: NEED_TO_INPUT
-    password: NEED_TO_INPUT
-    driver-class-name: org.postgresql.Driver
-logging:
-  level:
-    com.ll.todo20231222: INFO
-    org.hibernate.SQL: INFO
-    org.hibernate.orm.jdbc.bind: INFO
-    org.hibernate.orm.jdbc.extract: INFO
-    org.springframework.transaction.interceptor: INFO
-custom:
-  site:
-    name: TODO
-    baseUrl: "http://NEED_TO_INPUT:${server.port}"
+  port: 8080
