@@ -1,6 +1,7 @@
 package com.ll.todo20231222.domain.member.member.entity;
 
 import com.ll.todo20231222.global.jpa.BaseTime;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Transient;
 import lombok.*;
@@ -16,6 +17,7 @@ import java.util.List;
 public class Member extends BaseTime {
     private String username;
     private String password;
+    @Column(unique = true)
     private String refreshToken;
 
     @Transient
