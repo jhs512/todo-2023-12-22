@@ -13,7 +13,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .allowedOrigins(
                         "https://cdpn.io",
                         "http://localhost:5173",
-                        "https://todo-2023-12-22.fly.dev"
+                        "https://todo-2023-12-22.vercel.app"
                 )
                 .allowedMethods("*")
                 .allowedHeaders("*")
