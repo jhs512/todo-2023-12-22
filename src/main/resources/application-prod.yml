@@ -1,7 +1,9 @@
 server:
   port: 8080
-spring:
-  error:
-    include-message: always
-    include-binding-errors: always
-    include-stacktrace: on_trace_param
+logging:
+  level:
+    com.ll.todo20231222: INFO
+    org.hibernate.SQL: INFO
+    org.hibernate.orm.jdbc.bind: INFO
+    org.hibernate.orm.jdbc.extract: INFO
+    org.springframework.transaction.interceptor: INFO
