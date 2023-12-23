@@ -13,6 +13,6 @@ import java.util.List;
 public class ApiV1HomeController {
     @GetMapping("/names")
     public List<String> getNames() {
-        return List.of("hello", "world");
+        return List.of("hello!!", "world!!");
     }
 }
