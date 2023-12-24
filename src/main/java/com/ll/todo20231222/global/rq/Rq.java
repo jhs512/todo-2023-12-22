@@ -62,6 +62,8 @@ public class Rq {
     }
 
     public void removeCrossDomainCookie(String name) {
+        removeCookie(name);
+
         ResponseCookie cookie = ResponseCookie.from(name, null)
                 .path("/")
                 .maxAge(0)
@@ -186,6 +188,6 @@ public class Rq {
     public void setLogout() {
         removeCrossDomainCookie("accessToken");
         removeCrossDomainCookie("refreshToken");
-        destroySession();
+        removeCrossDomainCookie("JSESSIONID");
     }
 }
