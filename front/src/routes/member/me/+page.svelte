@@ -4,4 +4,6 @@
 
 <div>
 	username: {rq.member.username}
+	<br />
+	createDate: {rq.member.createDate}
 </div>
