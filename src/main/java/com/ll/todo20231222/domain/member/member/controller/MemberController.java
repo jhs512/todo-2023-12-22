@@ -2,7 +2,6 @@ package com.ll.todo20231222.domain.member.member.controller;
 
 import com.ll.todo20231222.domain.member.member.dto.MemberDto;
 import com.ll.todo20231222.domain.member.member.entity.Member;
-import com.ll.todo20231222.domain.member.member.service.MemberService;
 import com.ll.todo20231222.global.rq.Rq;
 import com.ll.todo20231222.global.rsData.RsData;
 import com.ll.todo20231222.standard.base.Empty;
@@ -24,7 +23,6 @@ import static org.springframework.util.MimeTypeUtils.ALL_VALUE;
 @RequiredArgsConstructor
 @Tag(name = "MemberController", description = "회원 컨트롤러")
 public class MemberController {
-    private final MemberService memberService;
     private final Rq rq;
 
     @GetMapping("/socialLogin/{providerTypeCode}")
@@ -33,8 +31,6 @@ public class MemberController {
         if (rq.isFrontUrl(redirectUri)) {
             rq.setCookie("redirectUrlAfterSocialLogin", redirectUri, 60 * 10);
         }
-
-        rq.setSession("test1", providerTypeCode);
 
         return "redirect:/oauth2/authorization/" + providerTypeCode;
     }

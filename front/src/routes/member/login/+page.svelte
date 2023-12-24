@@ -21,6 +21,7 @@
 		}
 
 		const { data, error } = await rq.apiEndPoints().POST('/api/v1/members/login', {
+			credentials: 'include',
 			body: {
 				username: form.username.value,
 				password: form.password.value
