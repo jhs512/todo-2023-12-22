@@ -9,5 +9,5 @@ logging:
     org.springframework.transaction.interceptor: INFO
   site:
     cookieDomain: ${custom.production.cookieDomain}
-    frontUrl: ${custom.production.devUrl}
+    frontUrl: ${custom.production.frontUrl}
     backUrl: ${custom.production.backUrl}
