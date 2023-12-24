@@ -36,6 +36,7 @@ public class Rq {
     public void setCookie(String name, String value, int maxAge) {
         Cookie cookie = new Cookie(name, value);
         cookie.setPath("/");
+        cookie.setMaxAge(maxAge);
         resp.addCookie(cookie);
     }
 
@@ -171,9 +172,6 @@ public class Rq {
     }
 
     public boolean isFrontUrl(String url) {
-        if (url.startsWith(AppConfig.getSiteFrontUrl())) return true;
-        if (url.startsWith(AppConfig.getSiteBackUrl())) return true;
-
-        return false;
+        return url.startsWith(AppConfig.getSiteFrontUrl());
     }
 }

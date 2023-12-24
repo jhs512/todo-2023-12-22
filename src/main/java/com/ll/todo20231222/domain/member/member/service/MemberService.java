@@ -34,10 +34,8 @@ public class MemberService {
         Member member = Member.builder()
                 .username(username)
                 .password(passwordEncoder.encode(password))
+                .refreshToken(authTokenService.genRefreshToken())
                 .build();
-
-        String refreshToken = authTokenService.genRefreshToken(member);
-        member.setRefreshToken(refreshToken);
 
         memberRepository.save(member);
 

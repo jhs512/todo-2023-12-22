@@ -62,7 +62,7 @@ public class AuthTokenService {
         }
     }
 
-    public String genRefreshToken(Member member) {
+    public String genRefreshToken() {
         SecureRandom random = new SecureRandom();
         byte bytes[] = new byte[10];
         random.nextBytes(bytes);
