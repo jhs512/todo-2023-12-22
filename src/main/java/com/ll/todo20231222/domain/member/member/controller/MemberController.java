@@ -27,9 +27,10 @@ public class MemberController {
 
     @GetMapping("/socialLogin/{providerTypeCode}")
     @Operation(summary = "소셜 로그인")
-    public String socialLogin(String redirectUri, @PathVariable String providerTypeCode) {
-        if (rq.isFrontUrl(redirectUri)) {
-            rq.setCookie("redirectUrlAfterSocialLogin", redirectUri, 60 * 10);
+    public String socialLogin(String redirectUrl, @PathVariable String providerTypeCode) {
+        if (rq.isFrontUrl(redirectUrl)) {
+            rq.setCookie("providerTypeCode", providerTypeCode, 60 * 10);
+            rq.setCookie("redirectUrlAfterSocialLogin", redirectUrl, 60 * 10);
         }
 
         return "redirect:/oauth2/authorization/" + providerTypeCode;

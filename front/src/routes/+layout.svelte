@@ -25,7 +25,7 @@
 				<a
 					href={`${
 						import.meta.env.VITE_CORE_API_BASE_URL
-					}/member/socialLogin/kakao?redirectUri=${encodeURIComponent(
+					}/member/socialLogin/kakao?redirectUrl=${encodeURIComponent(
 						import.meta.env.VITE_CORE_FRONT_BASE_URL + '/?rand=' + Math.random()
 					)}`}
 					class="btn btn-link"
