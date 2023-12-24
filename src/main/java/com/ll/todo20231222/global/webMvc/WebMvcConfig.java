@@ -13,8 +13,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addMapping("/api/**")
                 .allowedOrigins(
                         "https://cdpn.io",
-                        AppConfig.getDevFrontUrl(),
-                        AppConfig.getProductionFrontUrl()
+                        AppConfig.getSiteFrontUrl()
                 )
                 .allowedMethods("*")
                 .allowedHeaders("*")

@@ -23,14 +23,29 @@ public class AppConfig {
     }
 
     @Getter
-    private static String devFrontUrl;
+    private static String siteFrontUrl;
 
-    @Value("${custom.frontDevFrontUrl}")
-    public void setDevFrontUrl(String devFrontUrl) { this.devFrontUrl = devFrontUrl; }
+    @Value("${custom.site.frontUrl}")
+    public void setSiteFrontUrl(String siteFrontUrl) {
+        this.siteFrontUrl = siteFrontUrl;
+    }
 
     @Getter
-    private static String productionFrontUrl;
+    private static String siteBackUrl;
 
-    @Value("${custom.frontProductionFrontUrl}")
-    public void setProductionFrontUrl(String productionFrontUrl) { this.productionFrontUrl = productionFrontUrl; }
+    @Value("${custom.site.backUrl}")
+    public void setSiteBackUrl(String siteBackUrl) {
+        this.siteBackUrl = siteBackUrl;
+    }
+
+    private static String siteCookieDomain;
+
+    public static String getSiteCookieDomain() {
+        return siteCookieDomain.equals("localhost") ? siteCookieDomain : ("." + siteCookieDomain);
+    }
+
+    @Value("${custom.site.cookieDomain}")
+    public void setSiteCookieDomain(String siteCookieDomain) {
+        this.siteCookieDomain = siteCookieDomain;
+    }
 }

@@ -7,3 +7,7 @@ logging:
     org.hibernate.orm.jdbc.bind: INFO
     org.hibernate.orm.jdbc.extract: INFO
     org.springframework.transaction.interceptor: INFO
+  site:
+    cookieDomain: ${custom.production.cookieDomain}
+    frontUrl: ${custom.production.devUrl}
+    backUrl: ${custom.production.backUrl}

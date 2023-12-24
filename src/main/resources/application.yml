@@ -37,7 +37,7 @@ spring:
             scope: profile_nickname, profile_image
             client-name: Kakao
             authorization-grant-type: authorization_code
-            redirect-uri: '${custom.site.baseUrl}/{action}/oauth2/code/{registrationId}'
+            redirect-uri: '${custom.site.backUrl}/{action}/oauth2/code/{registrationId}'
         provider:
           kakao:
             authorization-uri: https://kauth.kakao.com/oauth/authorize
@@ -52,11 +52,19 @@ logging:
     org.hibernate.orm.jdbc.extract: TRACE
     org.springframework.transaction.interceptor: TRACE
 custom:
-  frontDevFrontUrl: http://localhost:5173
-  frontProductionFrontUrl: https://todo-2023-12-22.vercel.app
+  dev:
+    cookieDomain: localhost
+    frontUrl: http://localhost:5173
+    backUrl: "http://localhost:${server.port}"
+  production:
+    cookieDomain: todo-2023-12-22.oa.gg
+    frontUrl: "https://${custom.back.cookieDomain}"
+    backUrl: "https://api.${custom.back.cookieDomain}"
   site:
+    cookieDomain: ${custom.dev.cookieDomain}
+    frontUrl: ${custom.dev.frontUrl}
+    backUrl: ${custom.dev.backUrl}
     name: TODO
-    baseUrl: "http://localhost:${server.port}"
   jwt:
     secretKey: ON_SECRET
   accessToken:

@@ -29,12 +29,14 @@ public class Rq {
     public void setCookie(String name, String value) {
         Cookie cookie = new Cookie(name, value);
         cookie.setPath("/");
+        cookie.setDomain(AppConfig.getSiteCookieDomain());
         resp.addCookie(cookie);
     }
 
     public void setCookie(String name, String value, int maxAge) {
         Cookie cookie = new Cookie(name, value);
         cookie.setPath("/");
+        cookie.setDomain(AppConfig.getSiteCookieDomain());
         cookie.setMaxAge(maxAge);
         resp.addCookie(cookie);
     }
@@ -43,6 +45,7 @@ public class Rq {
         ResponseCookie cookie = ResponseCookie.from(name, value)
                 .path("/")
                 .sameSite("None")
+                .domain(AppConfig.getSiteCookieDomain())
                 .secure(true)
                 .httpOnly(true)
                 .build();
@@ -165,8 +168,8 @@ public class Rq {
     }
 
     public boolean isFrontUrl(String url) {
-        if ( url.startsWith(AppConfig.getDevFrontUrl()) ) return true;
-        if ( url.startsWith(AppConfig.getProductionFrontUrl()) ) return true;
+        if ( url.startsWith(AppConfig.getSiteFrontUrl()) ) return true;
+        if ( url.startsWith(AppConfig.getSiteBackUrl()) ) return true;
 
         return false;
     }
