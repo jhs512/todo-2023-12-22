@@ -30,6 +30,7 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 
             rq.setCrossDomainCookie("accessToken", accessToken);
             rq.setCrossDomainCookie("refreshToken", refreshToken);
+            rq.removeCookie("redirectUrlAfterSocialLogin");
 
             response.sendRedirect(redirectUrlAfterSocialLogin);
             return;
