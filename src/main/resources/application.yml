@@ -8,11 +8,6 @@ spring:
     multipart:
       max-file-size: 50MB
       max-request-size: ${spring.servlet.multipart.max-file-size}
-  session:
-    cookie:
-      domain: ${custom.site.cookieDomain}
-      http-only: true
-      secure: true
   jackson:
     serialization:
       fail-on-empty-beans: false
