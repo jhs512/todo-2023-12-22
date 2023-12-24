@@ -12,7 +12,10 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import static org.springframework.util.MimeTypeUtils.ALL_VALUE;
 
@@ -25,23 +28,15 @@ public class MemberController {
     private final Rq rq;
 
     @GetMapping("/socialLogin/{providerTypeCode}")
-    @ResponseBody
     @Operation(summary = "소셜 로그인")
     public String socialLogin(String redirectUri, @PathVariable String providerTypeCode) {
-        if ( rq.isFrontUrl(redirectUri) ) {
+        if (rq.isFrontUrl(redirectUri)) {
             rq.setCookie("redirectUrlAfterSocialLogin", redirectUri, 60 * 10);
         }
 
-        rq.destroySession();
+        rq.setLogout();
 
-        return """
-               잠시만 기다려주세요.
-               <script>
-                     setTimeout(function() {
-                        location.replace("/oauth2/authorization/%s");
-                     }, 2000);
-               </script> 
-                """.formatted(providerTypeCode);
+        return "redirect:/oauth2/authorization/" + providerTypeCode;
     }
 
     @Getter
