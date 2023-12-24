@@ -24,13 +24,15 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws ServletException, IOException {
         String redirectUrlAfterSocialLogin = rq.getCookieValue("redirectUrlAfterSocialLogin", "");
 
-        if ( rq.isFrontUrl(redirectUrlAfterSocialLogin) ) {
+        if (rq.isFrontUrl(redirectUrlAfterSocialLogin)) {
             String accessToken = authTokenService.genAccessToken(rq.getMember());
             String refreshToken = rq.getMember().getRefreshToken();
 
             rq.setCrossDomainCookie("accessToken", accessToken);
             rq.setCrossDomainCookie("refreshToken", refreshToken);
             rq.removeCookie("redirectUrlAfterSocialLogin");
+
+            rq.destroySession();
 
             response.sendRedirect(redirectUrlAfterSocialLogin);
             return;

@@ -178,4 +178,8 @@ public class Rq {
     public boolean isFrontUrl(String url) {
         return url.startsWith(AppConfig.getSiteFrontUrl());
     }
+
+    public void destroySession() {
+        req.getSession().invalidate();
+    }
 }
