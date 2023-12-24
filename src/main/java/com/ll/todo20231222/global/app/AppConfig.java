@@ -21,4 +21,16 @@ public class AppConfig {
     public void setJwtSecretKey(long accessTokenExpirationSec) {
         this.accessTokenExpirationSec = accessTokenExpirationSec;
     }
+
+    @Getter
+    private static String devFrontUrl;
+
+    @Value("${custom.frontDevFrontUrl}")
+    public void setDevFrontUrl(String devFrontUrl) { this.devFrontUrl = devFrontUrl; }
+
+    @Getter
+    private static String productionFrontUrl;
+
+    @Value("${custom.frontProductionFrontUrl}")
+    public void setProductionFrontUrl(String productionFrontUrl) { this.productionFrontUrl = productionFrontUrl; }
 }

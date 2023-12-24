@@ -52,6 +52,8 @@ logging:
     org.hibernate.orm.jdbc.extract: TRACE
     org.springframework.transaction.interceptor: TRACE
 custom:
+  frontDevFrontUrl: http://localhost:5173
+  frontProductionFrontUrl: https://todo-2023-12-22.vercel.app
   site:
     name: TODO
     baseUrl: "http://localhost:${server.port}"

@@ -8,10 +8,10 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.security.SecureRandom;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -63,6 +63,9 @@ public class AuthTokenService {
     }
 
     public String genRefreshToken(Member member) {
-        return UUID.randomUUID().toString();
+        SecureRandom random = new SecureRandom();
+        byte bytes[] = new byte[10];
+        random.nextBytes(bytes);
+        return bytes.toString();
     }
 }

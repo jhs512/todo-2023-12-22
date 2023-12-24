@@ -21,6 +21,14 @@
 			<li>
 				<a href="/member/login" class="btn btn-link">로그인</a>
 			</li>
+			<li>
+				<a
+					href={`${import.meta.env.VITE_CORE_API_BASE_URL}/member/socialLogin/kakao`}
+					class="btn btn-link"
+				>
+					카카오 로그인
+				</a>
+			</li>
 		{/if}
 		{#if rq.isLogin()}
 			<li>

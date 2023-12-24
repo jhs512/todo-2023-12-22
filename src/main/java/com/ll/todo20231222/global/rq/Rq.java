@@ -1,6 +1,7 @@
 package com.ll.todo20231222.global.rq;
 
 import com.ll.todo20231222.domain.member.member.entity.Member;
+import com.ll.todo20231222.global.app.AppConfig;
 import com.ll.todo20231222.global.exceptions.GlobalException;
 import com.ll.todo20231222.global.security.SecurityUser;
 import jakarta.persistence.EntityManager;
@@ -24,16 +25,17 @@ public class Rq {
     private final EntityManager entityManager;
     private Member member;
 
-    // 일반
-    public boolean isAjax() {
-        if ("application/json".equals(req.getHeader("Accept"))) return true;
-        return "XMLHttpRequest".equals(req.getHeader("X-Requested-With"));
-    }
-
     // 쿠키 관련
     public void setCookie(String name, String value) {
         Cookie cookie = new Cookie(name, value);
         cookie.setPath("/");
+        resp.addCookie(cookie);
+    }
+
+    public void setCookie(String name, String value, int maxAge) {
+        Cookie cookie = new Cookie(name, value);
+        cookie.setPath("/");
+        cookie.setMaxAge(maxAge);
         resp.addCookie(cookie);
     }
 
@@ -150,5 +152,22 @@ public class Rq {
 
     public void setStatusCode(int statusCode) {
         resp.setStatus(statusCode);
+    }
+
+    public String getReferer(String defaultValue) {
+        String referer = req.getHeader("Referer");
+
+        if ( referer == null ) {
+            referer = defaultValue;
+        }
+
+        return referer;
+    }
+
+    public boolean isFrontUrl(String url) {
+        if ( url.startsWith(AppConfig.getDevFrontUrl()) ) return true;
+        if ( url.startsWith(AppConfig.getProductionFrontUrl()) ) return true;
+
+        return false;
     }
 }

@@ -1,5 +1,6 @@
 package com.ll.todo20231222.global.webMvc;
 
+import com.ll.todo20231222.global.app.AppConfig;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -12,8 +13,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addMapping("/api/**")
                 .allowedOrigins(
                         "https://cdpn.io",
-                        "http://localhost:5173",
-                        "https://todo-2023-12-22.vercel.app"
+                        AppConfig.getDevFrontUrl(),
+                        AppConfig.getProductionFrontUrl()
                 )
                 .allowedMethods("*")
                 .allowedHeaders("*")
