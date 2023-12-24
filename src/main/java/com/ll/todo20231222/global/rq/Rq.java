@@ -36,16 +36,13 @@ public class Rq {
     public void setCookie(String name, String value, int maxAge) {
         Cookie cookie = new Cookie(name, value);
         cookie.setPath("/");
-        cookie.setDomain(AppConfig.getSiteCookieDomain());
-        cookie.setMaxAge(maxAge);
         resp.addCookie(cookie);
     }
 
     public void setCrossDomainCookie(String name, String value) {
         ResponseCookie cookie = ResponseCookie.from(name, value)
                 .path("/")
-                .sameSite("None")
-                .domain(AppConfig.getSiteCookieDomain())
+                .domain(".todo-2023-12-22.oa.gg")
                 .secure(true)
                 .httpOnly(true)
                 .build();
