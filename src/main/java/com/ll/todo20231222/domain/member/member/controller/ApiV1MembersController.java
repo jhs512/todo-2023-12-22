@@ -90,8 +90,7 @@ public class ApiV1MembersController {
     @PostMapping(value = "/logout", consumes = ALL_VALUE)
     @Operation(summary = "로그아웃")
     public RsData<Empty> logout() {
-        rq.removeCrossDomainCookie("accessToken");
-        rq.removeCrossDomainCookie("refreshToken");
+        rq.setLogout();
 
         return RsData.of("200", "로그아웃 성공");
     }

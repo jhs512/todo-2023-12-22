@@ -34,8 +34,6 @@ public class MemberController {
             rq.setCookie("redirectUrlAfterSocialLogin", redirectUri, 60 * 10);
         }
 
-        rq.setLogout();
-
         return "redirect:/oauth2/authorization/" + providerTypeCode;
     }
 
