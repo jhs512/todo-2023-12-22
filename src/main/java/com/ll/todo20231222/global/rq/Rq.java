@@ -182,4 +182,10 @@ public class Rq {
     public void destroySession() {
         req.getSession().invalidate();
     }
+
+    public void setLogout() {
+        removeCrossDomainCookie("accessToken");
+        removeCrossDomainCookie("refreshToken");
+        destroySession();
+    }
 }

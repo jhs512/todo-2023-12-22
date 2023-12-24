@@ -29,11 +29,9 @@ public class MemberController {
 
     @GetMapping("/socialLogin/{providerTypeCode}")
     @Operation(summary = "소셜 로그인")
-    public String socialLogin(@PathVariable String providerTypeCode) {
-        String referer = rq.getReferer("");
-
-        if ( rq.isFrontUrl(referer) ) {
-            rq.setCookie("redirectUrlAfterSocialLogin", referer, 60 * 10);
+    public String socialLogin(String redirectUri, @PathVariable String providerTypeCode) {
+        if ( rq.isFrontUrl(redirectUri) ) {
+            rq.setCookie("redirectUrlAfterSocialLogin", redirectUri, 60 * 10);
         }
 
         rq.destroySession();
@@ -64,9 +62,7 @@ public class MemberController {
     @PostMapping(value = "/logout", consumes = ALL_VALUE)
     @Operation(summary = "로그아웃")
     public RsData<Empty> logout() {
-        rq.removeCrossDomainCookie("accessToken");
-        rq.removeCrossDomainCookie("refreshToken");
-        rq.destroySession();
+        rq.setLogout();
 
         return RsData.of("200", "로그아웃 성공");
     }

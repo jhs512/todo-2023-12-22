@@ -23,7 +23,11 @@
 			</li>
 			<li>
 				<a
-					href={`${import.meta.env.VITE_CORE_API_BASE_URL}/member/socialLogin/kakao`}
+					href={`${
+						import.meta.env.VITE_CORE_API_BASE_URL
+					}/member/socialLogin/kakao?redirectUri=${encodeURIComponent(
+						import.meta.env.VITE_BASE_URL + '/?rand=' + Math.random()
+					)}`}
 					class="btn btn-link"
 				>
 					카카오 로그인
