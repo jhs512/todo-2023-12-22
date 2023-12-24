@@ -38,11 +38,8 @@ public class AppConfig {
         this.siteBackUrl = siteBackUrl;
     }
 
+    @Getter
     private static String siteCookieDomain;
-
-    public static String getSiteCookieDomain() {
-        return siteCookieDomain.equals("localhost") ? siteCookieDomain : ("." + siteCookieDomain);
-    }
 
     @Value("${custom.site.cookieDomain}")
     public void setSiteCookieDomain(String siteCookieDomain) {

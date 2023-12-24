@@ -161,7 +161,7 @@ public class Rq {
         String referer = req.getHeader("Referer");
 
         if ( referer == null ) {
-            referer = defaultValue;
+            return defaultValue;
         }
 
         return referer;
