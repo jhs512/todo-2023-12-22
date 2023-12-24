@@ -54,12 +54,12 @@ logging:
 custom:
   dev:
     cookieDomain: localhost
-    frontUrl: http://localhost:5173
-    backUrl: "http://localhost:${server.port}"
+    frontUrl: "http://${custom.dev.cookieDomain}:5173"
+    backUrl: "http://${custom.dev.cookieDomain}:${server.port}"
   production:
     cookieDomain: todo-2023-12-22.oa.gg
-    frontUrl: "https://${custom.back.cookieDomain}"
-    backUrl: "https://api.${custom.back.cookieDomain}"
+    frontUrl: "https://${custom.production.cookieDomain}"
+    backUrl: "https://api.${custom.production.cookieDomain}"
   site:
     cookieDomain: ${custom.dev.cookieDomain}
     frontUrl: ${custom.dev.frontUrl}
