@@ -190,4 +190,8 @@ public class Rq {
         removeCrossDomainCookie("refreshToken");
         SecurityContextHolder.getContext().setAuthentication(null);
     }
+
+    public void setSession(String name, String value) {
+        req.getSession().setAttribute(name, value);
+    }
 }
