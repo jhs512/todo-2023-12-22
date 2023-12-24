@@ -188,6 +188,6 @@ public class Rq {
     public void setLogout() {
         removeCrossDomainCookie("accessToken");
         removeCrossDomainCookie("refreshToken");
-        destroySession();
+        SecurityContextHolder.getContext().setAuthentication(null);
     }
 }
