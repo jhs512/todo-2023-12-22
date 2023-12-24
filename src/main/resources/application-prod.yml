@@ -8,6 +8,6 @@ logging:
     org.hibernate.orm.jdbc.extract: INFO
     org.springframework.transaction.interceptor: INFO
   site:
-    cookieDomain: ${custom.production.cookieDomain}
-    frontUrl: ${custom.production.frontUrl}
-    backUrl: ${custom.production.backUrl}
+    cookieDomain: "${custom.production.cookieDomain}"
+    frontUrl: "${custom.production.frontUrl}"
+    backUrl: "${custom.production.backUrl}"
