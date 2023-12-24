@@ -40,9 +40,15 @@ public class Rq {
     }
 
     public void setCrossDomainCookie(String name, String value) {
+        String cookieDomain = AppConfig.getSiteCookieDomain();
+
+        if (!cookieDomain.equals("localhost")) {
+            cookieDomain = "." + cookieDomain;
+        }
+
         ResponseCookie cookie = ResponseCookie.from(name, value)
                 .path("/")
-                .domain(".todo-2023-12-22.oa.gg")
+                .domain(cookieDomain)
                 .secure(true)
                 .httpOnly(true)
                 .build();
@@ -157,7 +163,7 @@ public class Rq {
     public String getReferer(String defaultValue) {
         String referer = req.getHeader("Referer");
 
-        if ( referer == null ) {
+        if (referer == null) {
             return defaultValue;
         }
 
@@ -165,8 +171,8 @@ public class Rq {
     }
 
     public boolean isFrontUrl(String url) {
-        if ( url.startsWith(AppConfig.getSiteFrontUrl()) ) return true;
-        if ( url.startsWith(AppConfig.getSiteBackUrl()) ) return true;
+        if (url.startsWith(AppConfig.getSiteFrontUrl())) return true;
+        if (url.startsWith(AppConfig.getSiteBackUrl())) return true;
 
         return false;
     }
