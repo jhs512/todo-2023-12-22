@@ -41,7 +41,14 @@ public class ApiSecurityConfig {
                 .cors(cors -> cors
                         .configure(http)
                 )
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .securityMatcher("/member/socialLogin/**", "/oauth2/authorization/**")
+                .sessionManagement(
+                        sessionManagement -> sessionManagement
+                                .sessionCreationPolicy(
+                                        SessionCreationPolicy.STATELESS
+                                )
+                );
 
         return http.build();
     }
