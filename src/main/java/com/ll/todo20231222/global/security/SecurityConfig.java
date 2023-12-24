@@ -43,7 +43,7 @@ public class SecurityConfig {
                 .oauth2Login(
                         oauth2Login -> oauth2Login
                                 .successHandler(customAuthenticationSuccessHandler)
-                                .failureHandler(customAuthenticationFailureHandler)
+                                //.failureHandler(customAuthenticationFailureHandler)
                 );
 
         return http.build();
