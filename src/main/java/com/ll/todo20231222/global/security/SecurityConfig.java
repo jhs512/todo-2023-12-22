@@ -44,6 +44,13 @@ public class SecurityConfig {
                                 .successHandler(customAuthenticationSuccessHandler)
                 );
 
+        if (true) {
+            http.sessionManagement(
+                    sessionManagement -> sessionManagement
+                            .disable()
+            );
+        }
+
         return http.build();
     }
 

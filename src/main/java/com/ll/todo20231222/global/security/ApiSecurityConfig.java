@@ -39,6 +39,7 @@ public class ApiSecurityConfig {
                         .configure(http)
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
 }
