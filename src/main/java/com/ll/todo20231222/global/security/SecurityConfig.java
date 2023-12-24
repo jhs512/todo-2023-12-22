@@ -1,7 +1,5 @@
 package com.ll.todo20231222.global.security;
 
-import com.ll.todo20231222.domain.member.member.service.AuthTokenService;
-import com.ll.todo20231222.global.rq.Rq;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,8 +14,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
-    private final Rq rq;
-    private final AuthTokenService authTokenService;
     private final CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 
     @Bean
@@ -37,16 +33,15 @@ public class SecurityConfig {
                                                 frameOptions.sameOrigin()
                                 )
                 )
-                .oauth2Login(
-                        oauth2Login -> oauth2Login
-                                .loginPage("/member/socialLogin")
-                                .successHandler(customAuthenticationSuccessHandler)
-                )
                 .csrf(
                         csrf ->
                                 csrf.ignoringRequestMatchers(
                                         "/h2-console/**"
                                 )
+                )
+                .oauth2Login(
+                        oauth2Login -> oauth2Login
+                                .successHandler(customAuthenticationSuccessHandler)
                 );
 
         return http.build();
