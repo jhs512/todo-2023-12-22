@@ -66,6 +66,7 @@ public class MemberController {
     public RsData<Empty> logout() {
         rq.removeCrossDomainCookie("accessToken");
         rq.removeCrossDomainCookie("refreshToken");
+        rq.destroySession();
 
         return RsData.of("200", "로그아웃 성공");
     }
