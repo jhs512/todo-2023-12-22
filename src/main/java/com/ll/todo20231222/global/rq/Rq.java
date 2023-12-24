@@ -40,16 +40,20 @@ public class Rq {
         resp.addCookie(cookie);
     }
 
-    public void setCrossDomainCookie(String name, String value) {
+    private String getSiteCookieDomain() {
         String cookieDomain = AppConfig.getSiteCookieDomain();
 
         if (!cookieDomain.equals("localhost")) {
-            cookieDomain = "." + cookieDomain;
+            return cookieDomain = "." + cookieDomain;
         }
 
+        return null;
+    }
+
+    public void setCrossDomainCookie(String name, String value) {
         ResponseCookie cookie = ResponseCookie.from(name, value)
                 .path("/")
-                .domain(cookieDomain)
+                .domain(getSiteCookieDomain())
                 .secure(true)
                 .httpOnly(true)
                 .build();
@@ -61,7 +65,7 @@ public class Rq {
         ResponseCookie cookie = ResponseCookie.from(name, null)
                 .path("/")
                 .maxAge(0)
-                .sameSite("None")
+                .domain(getSiteCookieDomain())
                 .secure(true)
                 .httpOnly(true)
                 .build();
