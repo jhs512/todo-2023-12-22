@@ -24,25 +24,18 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     @Override
     @Transactional
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
-        log.info("A1");
         OAuth2User oAuth2User = super.loadUser(userRequest);
-        log.info("A2");
+
         String oauthId = oAuth2User.getName();
         Map<String, Object> attributes = oAuth2User.getAttributes();
-        log.info("A3");
         Map attributesProperties = (Map) attributes.get("properties");
+
         String nickname = (String) attributesProperties.get("nickname");
         String profileImgUrl = (String) attributesProperties.get("profile_image");
-        log.info("A4");
         String providerTypeCode = userRequest.getClientRegistration().getRegistrationId().toUpperCase();
-        log.info("A5");
         String username = providerTypeCode + "__%s".formatted(oauthId);
-        log.info("A6");
         Member member = memberService.whenSocialLogin(providerTypeCode, username, nickname, profileImgUrl).getData();
-        log.info("A7");
-        SecurityUser securityUser = new SecurityUser(member.getId(), member.getUsername(), member.getPassword(), member.getAuthorities());
-        log.info("A8");
 
-        return securityUser;
+        return new SecurityUser(member.getId(), member.getUsername(), member.getPassword(), member.getAuthorities());
     }
 }
