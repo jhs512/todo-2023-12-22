@@ -30,13 +30,6 @@ public class ApiV1MembersController {
     private final MemberService memberService;
     private final Rq rq;
 
-    @AllArgsConstructor
-    @Getter
-    public static class LoginResponseBody {
-        @NonNull
-        private MemberDto item;
-    }
-
     @Getter
     @Setter
     public static class LoginRequestBody {
@@ -44,6 +37,13 @@ public class ApiV1MembersController {
         private String username;
         @NotBlank
         private String password;
+    }
+
+    @AllArgsConstructor
+    @Getter
+    public static class LoginResponseBody {
+        @NonNull
+        private MemberDto item;
     }
 
     @PostMapping("/login")
