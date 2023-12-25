@@ -5,7 +5,7 @@
 
 	const { children } = $props();
 
-	$effect(() => {
+	rq.effect(async () => {
 		untrack(() => {
 			rq.initAuth();
 		});
