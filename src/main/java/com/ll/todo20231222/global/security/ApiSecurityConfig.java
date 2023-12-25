@@ -23,6 +23,8 @@ public class ApiSecurityConfig {
                 .securityMatcher("/api/**")
                 .authorizeRequests(
                         authorizeRequests -> authorizeRequests
+                                .requestMatchers("/api/*/posts")
+                                .permitAll()
                                 .requestMatchers("/api/*/members/login", "/api/*/members/logout")
                                 .permitAll()
                                 .anyRequest()

@@ -28,9 +28,11 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
             String accessToken = authTokenService.genAccessToken(rq.getMember());
             String refreshToken = rq.getMember().getRefreshToken();
 
+            rq.destroySession();
             rq.setCrossDomainCookie("accessToken", accessToken);
             rq.setCrossDomainCookie("refreshToken", refreshToken);
             rq.removeCookie("redirectUrlAfterSocialLogin");
+            rq.removeCookie("providerTypeCode");
 
             response.sendRedirect(redirectUrlAfterSocialLogin);
             return;

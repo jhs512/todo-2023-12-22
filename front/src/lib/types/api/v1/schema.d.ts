@@ -13,6 +13,14 @@ export interface paths {
     /** 로그인, 로그인 성공시 accessToken, refreshToken 쿠키 설정 */
     post: operations["login"];
   };
+  "/api/v1/posts": {
+    /** 글 리스트 */
+    get: operations["getItems"];
+  };
+  "/api/v1/posts/mine": {
+    /** 내 글 리스트 */
+    get: operations["getMine"];
+  };
   "/api/v1/members/me": {
     /** 내 정보 */
     get: operations["getMe"];
@@ -59,6 +67,43 @@ export interface components {
       statusCode: number;
       msg: string;
       data: components["schemas"]["LoginResponseBody"];
+      success: boolean;
+      fail: boolean;
+    };
+    GetItemsResponseBody: {
+      items: components["schemas"]["PostDto"][];
+    };
+    PostDto: {
+      /** Format: int64 */
+      id: number;
+      /** Format: date-time */
+      createDate: string;
+      /** Format: date-time */
+      modifyDate: string;
+      /** Format: int64 */
+      authorId: number;
+      authorUsername: string;
+      title: string;
+      body: string;
+    };
+    RsDataGetItemsResponseBody: {
+      resultCode: string;
+      /** Format: int32 */
+      statusCode: number;
+      msg: string;
+      data: components["schemas"]["GetItemsResponseBody"];
+      success: boolean;
+      fail: boolean;
+    };
+    GetMineResponseBody: {
+      items: components["schemas"]["PostDto"][];
+    };
+    RsDataGetMineResponseBody: {
+      resultCode: string;
+      /** Format: int32 */
+      statusCode: number;
+      msg: string;
+      data: components["schemas"]["GetMineResponseBody"];
       success: boolean;
       fail: boolean;
     };
@@ -117,6 +162,40 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["RsDataLoginResponseBody"];
+        };
+      };
+      /** @description Internal Server Error */
+      500: {
+        content: {
+          "*/*": components["schemas"]["RsDataEmpty"];
+        };
+      };
+    };
+  };
+  /** 글 리스트 */
+  getItems: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["RsDataGetItemsResponseBody"];
+        };
+      };
+      /** @description Internal Server Error */
+      500: {
+        content: {
+          "*/*": components["schemas"]["RsDataEmpty"];
+        };
+      };
+    };
+  };
+  /** 내 글 리스트 */
+  getMine: {
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["RsDataGetMineResponseBody"];
         };
       };
       /** @description Internal Server Error */

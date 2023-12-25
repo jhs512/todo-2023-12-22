@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@OpenAPIDefinition(info = @Info(title = "APP API", version = "v1"))
+@OpenAPIDefinition(info = @Info(title = "APP-API", version = "V1"))
 @SecurityScheme(
         name = "bearerAuth",
         type = SecuritySchemeType.HTTP,
@@ -20,7 +20,7 @@ public class SpringDocConfig {
     @Bean
     public GroupedOpenApi groupApiV1() {
         return GroupedOpenApi.builder()
-                .group("API V1")
+                .group("apiV1")
                 .pathsToMatch("/api/v1/**")
                 .build();
     }
@@ -28,7 +28,7 @@ public class SpringDocConfig {
     @Bean
     public GroupedOpenApi groupController() {
         return GroupedOpenApi.builder()
-                .group("Controller")
+                .group("controller")
                 .pathsToExclude("/api/**")
                 .build();
     }

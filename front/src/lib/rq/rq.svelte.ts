@@ -53,7 +53,7 @@ class Rq {
     }
 
     public apiEndPoints() {
-        return createClient<paths>({ baseUrl: import.meta.env.VITE_CORE_API_BASE_URL });
+        return createClient<paths>({ baseUrl: import.meta.env.VITE_CORE_API_BASE_URL, credentials: 'include' });
     }
 
     public msgInfo(message: string) {
@@ -93,9 +93,7 @@ class Rq {
     }
 
     public async initAuth() {
-        const { data } = await this.apiEndPoints().GET('/api/v1/members/me', {
-            credentials: 'include'
-        });
+        const { data } = await this.apiEndPoints().GET('/api/v1/members/me');
 
         if (data) {
             this.setLogined(data.data.item);
@@ -105,9 +103,7 @@ class Rq {
     }
 
     public async logout() {
-        const {} = await this.apiEndPoints().POST('/api/v1/members/logout', {
-            credentials: 'include'
-        });
+        const {} = await this.apiEndPoints().POST('/api/v1/members/logout');
 
         this.setLogout();
 
@@ -144,6 +140,12 @@ class Rq {
 
     public goToLoginPage() {
         this.goto('/member/login');
+    }
+
+    public effect(fn: () => void) {
+        $effect(() => {
+            fn();
+        })
     }
 }
 
