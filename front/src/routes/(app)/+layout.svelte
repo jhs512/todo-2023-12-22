@@ -17,24 +17,21 @@
 		<li>
 			<a href="/" class="btn btn-link">홈</a>
 		</li>
+		<li>
+			<a href="/post/list" class="btn btn-link">글</a>
+		</li>
 		{#if rq.isLogout()}
 			<li>
 				<a href="/member/login" class="btn btn-link">로그인</a>
 			</li>
 			<li>
-				<a
-					href={`${
-						import.meta.env.VITE_CORE_API_BASE_URL
-					}/member/socialLogin/kakao?redirectUrl=${encodeURIComponent(
-						import.meta.env.VITE_CORE_FRONT_BASE_URL + '/?rand=' + Math.random()
-					)}`}
-					class="btn btn-link"
-				>
-					카카오 로그인
-				</a>
+				<a href={`${rq.getKakaoLoginUrl()}`} class="btn btn-link"> 카카오 로그인 </a>
 			</li>
 		{/if}
 		{#if rq.isLogin()}
+			<li>
+				<a href="/post/myList" class="btn btn-link">내글</a>
+			</li>
 			<li>
 				<button on:click={() => rq.logout()} class="btn btn-link">로그아웃</button>
 			</li>

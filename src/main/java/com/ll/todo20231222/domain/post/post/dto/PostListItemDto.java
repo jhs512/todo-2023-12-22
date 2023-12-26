@@ -10,11 +10,8 @@ import static lombok.AccessLevel.PROTECTED;
 @NoArgsConstructor(access = PROTECTED)
 @Getter
 @ToString(callSuper = true)
-public class PostDto extends PostBaseDto {
-    private String body;
-
-    public PostDto(Post post) {
+public class PostListItemDto extends PostBaseDto {
+    public PostListItemDto(Post post) {
         super(post);
-        this.body = post.getBody();
     }
 }

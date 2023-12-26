@@ -17,6 +17,10 @@ export interface paths {
     /** 글 리스트 */
     get: operations["getItems"];
   };
+  "/api/v1/posts/{id}": {
+    /** 글 */
+    get: operations["getItem"];
+  };
   "/api/v1/posts/mine": {
     /** 내 글 리스트 */
     get: operations["getMine"];
@@ -41,8 +45,8 @@ export interface components {
       statusCode: number;
       msg: string;
       data: components["schemas"]["Empty"];
-      fail: boolean;
       success: boolean;
+      fail: boolean;
     };
     LoginRequestBody: {
       username: string;
@@ -67,11 +71,35 @@ export interface components {
       statusCode: number;
       msg: string;
       data: components["schemas"]["LoginResponseBody"];
-      fail: boolean;
       success: boolean;
+      fail: boolean;
     };
     GetItemsResponseBody: {
-      items: components["schemas"]["PostDto"][];
+      items: components["schemas"]["PostListItemDto"][];
+    };
+    PostListItemDto: {
+      /** Format: int64 */
+      id: number;
+      /** Format: date-time */
+      createDate: string;
+      /** Format: date-time */
+      modifyDate: string;
+      /** Format: int64 */
+      authorId: number;
+      authorUsername: string;
+      title: string;
+    };
+    RsDataGetItemsResponseBody: {
+      resultCode: string;
+      /** Format: int32 */
+      statusCode: number;
+      msg: string;
+      data: components["schemas"]["GetItemsResponseBody"];
+      success: boolean;
+      fail: boolean;
+    };
+    GetItemResponseBody: {
+      item: components["schemas"]["PostDto"];
     };
     PostDto: {
       /** Format: int64 */
@@ -84,19 +112,19 @@ export interface components {
       authorId: number;
       authorUsername: string;
       title: string;
-      body: string;
+      body?: string;
     };
-    RsDataGetItemsResponseBody: {
+    RsDataGetItemResponseBody: {
       resultCode: string;
       /** Format: int32 */
       statusCode: number;
       msg: string;
-      data: components["schemas"]["GetItemsResponseBody"];
-      fail: boolean;
+      data: components["schemas"]["GetItemResponseBody"];
       success: boolean;
+      fail: boolean;
     };
     GetMineResponseBody: {
-      items: components["schemas"]["PostDto"][];
+      items: components["schemas"]["PostListItemDto"][];
     };
     RsDataGetMineResponseBody: {
       resultCode: string;
@@ -104,8 +132,8 @@ export interface components {
       statusCode: number;
       msg: string;
       data: components["schemas"]["GetMineResponseBody"];
-      fail: boolean;
       success: boolean;
+      fail: boolean;
     };
     MeResponseBody: {
       item: components["schemas"]["MemberDto"];
@@ -116,8 +144,8 @@ export interface components {
       statusCode: number;
       msg: string;
       data: components["schemas"]["MeResponseBody"];
-      fail: boolean;
       success: boolean;
+      fail: boolean;
     };
   };
   responses: never;
@@ -179,6 +207,28 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["RsDataGetItemsResponseBody"];
+        };
+      };
+      /** @description Internal Server Error */
+      500: {
+        content: {
+          "*/*": components["schemas"]["RsDataEmpty"];
+        };
+      };
+    };
+  };
+  /** 글 */
+  getItem: {
+    parameters: {
+      path: {
+        id: number;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["RsDataGetItemResponseBody"];
         };
       };
       /** @description Internal Server Error */

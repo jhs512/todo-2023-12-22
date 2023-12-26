@@ -24,9 +24,9 @@ import static org.springframework.util.MimeTypeUtils.ALL_VALUE;
 @RestController
 @RequestMapping(value = "/api/v1/members", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
-@Tag(name = "ApiV1ArticlesController", description = "게시물 CRUD 컨트롤러")
+@Tag(name = "ApiV1MemberController", description = "회원 CRUD 컨트롤러")
 @SecurityRequirement(name = "bearerAuth")
-public class ApiV1MembersController {
+public class ApiV1MemberController {
     private final MemberService memberService;
     private final Rq rq;
 
